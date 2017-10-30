@@ -52,7 +52,7 @@ class KD_Tree
 
 
 
-		//TestCode(citylist,query,numberOfClosestNeighbours);
+		TestCode(citylist,query,numberOfClosestNeighbours);
 
 		/* 
 		 * Simple Version of Kd-Tree
@@ -174,8 +174,8 @@ class KD_Tree
 			if(result.size() == numberOfClosestNeighbours) //if Queue is full
 			{
 				//if differnece in x or y coordinate is greater thamfarthest element in queue, thenStop search as we will not get any more solutions
-				if(Math.abs(query.x - cityToEvaluate.x) >= (result.peek().distance)
-						||(Math.abs(query.y - cityToEvaluate.y) >= (result.peek().distance)))
+				if(Math.abs(query.x - cityToEvaluate.x) >= (result.peek().distance))
+						//||(Math.abs(query.y - cityToEvaluate.y) >= (result.peek().distance)))
 				{
 					//System.out.println("(Stop search on x for this left/right :"+cityToEvaluate.x);
 					return true;
