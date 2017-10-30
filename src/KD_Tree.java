@@ -17,7 +17,8 @@ class KD_Tree
 		int locationRange = 10; //-10 to 10
 		int inputDataLength= 10;
 		int numberOfClosestNeighbours = 5;
-		int priceRange = 1000;		
+		int priceRange = 1000;	
+		int lengthofCheapestTicketsFromEachEvent = 1;	
 		City query = new City(51,74,999,null); //x:51,y:74,999 is random location Id of Query Point 
 		
 		/*
@@ -84,7 +85,7 @@ class KD_Tree
 			if(buildResult(numberOfClosestNeighbours,PointsMap,resultQueue,query,leftX))
 			{
 				//If difference in x co-oridante w.r.t query  is greater than current maximum distance,then break
-				System.out.println("Break....");
+				//System.out.println("Break....");
 				break;
 			}
 
@@ -103,7 +104,7 @@ class KD_Tree
 			//If difference in x co-oridante w.r.t query  is greater than current maximum distance,then break
 			if(buildResult(numberOfClosestNeighbours,PointsMap,resultQueue,query,rightX))
 			{
-				System.out.println("Break....");
+				//System.out.println("Break....");
 				break;
 			}
 			rightX = PointsMap.higherKey(rightX); // next
@@ -128,12 +129,13 @@ class KD_Tree
 		
 		//print result in sorted order
 		reverseQueue(reverseQueue,resultQueue);
+		System.out.println("Closest Events to  => "+query.x+","+query.y);
 		while(!reverseQueue.isEmpty())
 		{
 			Node answer = reverseQueue.poll();
-			System.out.print("Closest Location : "+answer.x +","+ answer.y + "  ");
-			System.out.print("Cheapest Tickets :");
-			for(int ticket = 0;ticket < 5;ticket++)
+			System.out.print("Event Location Id: "+answer.locationID+ "  Cordiantes: " +answer.x +","+ answer.y + "  Distance: "+Math.sqrt(answer.distance));
+			System.out.print("   Cheapest Tickets price in USD:");
+			for(int ticket = 0;ticket < lengthofCheapestTicketsFromEachEvent;ticket++)
 			{
 				System.out.print(answer.ticketPrices.poll() + "  ");
 			}
@@ -175,7 +177,7 @@ class KD_Tree
 				if(Math.abs(query.x - cityToEvaluate.x) >= (result.peek().distance)
 						||(Math.abs(query.y - cityToEvaluate.y) >= (result.peek().distance)))
 				{
-					System.out.println("(Stop search on x for this left/right :"+cityToEvaluate.x);
+					//System.out.println("(Stop search on x for this left/right :"+cityToEvaluate.x);
 					return true;
 				}
 				temp.distance = euclidean(cityToEvaluate,query);
@@ -187,7 +189,7 @@ class KD_Tree
 				}
 				else
 				{
-					System.out.println("Stop exploring this x co-ordinate : "+cityToEvaluate.x);
+					//System.out.println("Stop exploring this x co-ordinate : "+cityToEvaluate.x);
 					return false;  //since y's are sorted and from now on y's are more, stop y's for this x
 				}
 			}

@@ -5,4 +5,9 @@ Variable parametes in code to moify:
 2.inputDataLength : Length of given Input Data (In algorithm shared, currently its generated randonly)
 3.numberOfClosestNeighbours : number of n closest points to find in Algorithm
 4.priceRange : Price Range of event tickets
-5.query : random time query point P. Example: City(51,74,999,null); //x:51,y:74,999 is random location Id of Query Point
+5.lengthofCheapestTicketsFromEachEvent: Length on cheapest tickets from each event(Example: say 5$ is cheapest ticket, 8$ is seconds cheapest and so on...)
+6.query : random time query point P. Example: City(51,74,999,null); //x:51,y:74,999 is random location Id of Query Point
+
+
+To Run Code:
+Modify above paramets as desired and compile/run KD_Tree java class
